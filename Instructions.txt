@@ -1,0 +1,16 @@
+RULES:
+
+(1) Ask for source, destination currency, amount and convert. If possible, present rates in other currencies 
+
+(2) Ask for a source currency, show rates for '3' different popular currencies
+
+(3) Currency rate 10-12 days ago (history)
+
+API link: https://exchangeratesapi.io/documentation/
+
+Requests guide: https://realpython.com/python-requests/#the-response
+
+'''
+Response code = 20X, usually succesfull
+Response code > 400, usually an error
+'''
