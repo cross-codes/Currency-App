@@ -52,6 +52,8 @@ def more_values(cur_from, ent_date):
             continue
     return answer
 
+    
+
 if __name__ == "__main__":  
     result = read_user_cli_arguments()
     dictionary = vars(result)
