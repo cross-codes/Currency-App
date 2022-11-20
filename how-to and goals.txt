@@ -1,0 +1,4 @@
+- Convert one currency to another (This should allow for a certain date or today) = /convert 
+- Show the current (not day but real-time) exchange rate of popular currencies against USD = /latest
+- Show the exchange rate of popular currencies against USD in a date range = /timeseries
+- Show the value of entered currency against dollar over 5 days and 1 month (Ask user) = /timeseries
