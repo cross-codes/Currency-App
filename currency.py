@@ -2,7 +2,7 @@
 
 import argparse
 from configparser import ConfigParser
-from datetime import date, datetime
+from datetime import date
 import requests
 from prettytable import PrettyTable
 
