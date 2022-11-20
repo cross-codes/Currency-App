@@ -43,7 +43,6 @@ def more_values(cur_from, ent_date):
     headers = { "apikey" : apikey}
     currency_lst = ["INR", "USD", "EUR", "JPY", "GBP", "AUD", "CAD"]
     for x in range (0, len(currency_lst), 1):
-        
         parameters = {"to": str(currency_lst[x]), "from": str(cur_from), "amount": '1', "date": str(ent_date)}
         response = requests.get(url = BASE_URL, params = parameters, headers = headers)
         if response.status_code == 200:
@@ -53,7 +52,6 @@ def more_values(cur_from, ent_date):
     return answer
 
     
-
 if __name__ == "__main__":  
     result = read_user_cli_arguments()
     dictionary = vars(result)
