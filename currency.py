@@ -74,7 +74,7 @@ def dated_exchange_rates(req_date):
     answer = []
     apikey = _get_key()
     headers = {"apikey": apikey}
-    parameters = {"base": "USD", "date": datetime.strptime(req_date, '%Y-%m-%d').date()}
+    parameters = {"base": "USD", "date": datetime.strptime(req_date, '%-%m-%d').date()}
     # print (str((datetime.strptime(req_date, '%Y-%m-%d').date()).strftime("%Y-%m-%d")), type(str((datetime.strptime(req_date, '%Y-%m-%d').date()).strftime("%Y-%m-%d"))))
     response = requests.get(url = BASE_URL + "{{date}}", params = parameters, headers = headers)
     if response.status_code == 200:
