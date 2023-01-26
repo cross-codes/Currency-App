@@ -220,6 +220,6 @@ if __name__ == "__main__":
                 checker = False
                 break
         
-            else:
+            elif choice not in [1,2,3,4,5]:
                 print ("Invalid input, enter again")
 
