@@ -2,7 +2,7 @@
 
 import argparse
 from configparser import ConfigParser
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import requests
 from prettytable import PrettyTable
 
@@ -74,7 +74,7 @@ def dated_exchange_rates(req_date):
     answer = []
     apikey = _get_key()
     headers = {"apikey": apikey}
-    parameters = { "base": "USD", "date": datetime.strptime(req_date, '%Y-%m-%d').date()}
+    parameters = {"base": "USD", "date": datetime.strptime(req_date, '%Y-%m-%d').date()}
     # print (str((datetime.strptime(req_date, '%Y-%m-%d').date()).strftime("%Y-%m-%d")), type(str((datetime.strptime(req_date, '%Y-%m-%d').date()).strftime("%Y-%m-%d"))))
     response = requests.get(url = BASE_URL + "{{date}}", params = parameters, headers = headers)
     if response.status_code == 200:
@@ -85,8 +85,19 @@ def dated_exchange_rates(req_date):
         return None
 
 
-def timeseries(start, end, limits, base):
-    pass
+def timeseries(start, end, base, limits = "USD"):
+    answer = []
+    apikey = _get_key()
+    headers = {"apikey": apikey}
+    parameters = {"start_date": start, "end_date": end, "base": base, "symbols": "USD"}
+    response = requests.get(url = BASE_URL + "timeseries", params = parameters, headers = headers)
+    if response.status_code == 200:
+        answer.append(response.json()["rates"])
+        return answer
+    else:
+        print ("Oops,something went wrong! [Status code:", response.status_code, "\b]")
+        return None
+
 
 
 if __name__ == "__main__":  
@@ -178,15 +189,29 @@ if __name__ == "__main__":
                 print ("(1) To show the value of", dictionary["from"][0], "against USD 5 days from", cur_date)
                 print ("(2) To show the value of", dictionary["from"][0], "against USD 30 days from", cur_date)
                 while checker44:
-                    choice4 = int(input("Enter a choice"))
+                    choice4 = int(input("Enter a choice: "))
                     if choice4 == 1:
                         delta = 5
-                        d = datetime.timedelta(days = delta)
-                        end_date = cur_date - d
+                        end_date = cur_date - timedelta(days = delta)
+                        answer =  timeseries(end_date.strftime("%Y-%m-%d"), cur_date.strftime("%Y-%m-%d"), base = dictionary["from"][0], limits = "USD")
+                        timeseries_table = PrettyTable(["Date", "1 INR in USD"])
+                        answer_keys = list(answer[0].keys())
+                        answer_values = list(answer[0].values())
+                        for x in range(0, len(answer_keys), 1):
+                            timeseries_table.add_row([answer_keys[x], answer_values[x]])
+                        print ("Timeseries is as tabulated below: ")
+                        print (timeseries_table)
                     elif choice4 == 2:
                         delta = 30
-                        d = datetime.timedelta(days = delta)
-                        end_date = cur_date - d
+                        end_date = cur_date - timedelta(days = delta)
+                        answer =  timeseries(end_date.strftime("%Y-%m-%d"), cur_date.strftime("%Y-%m-%d"), base = dictionary["from"][0], limits = "USD")
+                        timeseries_table = PrettyTable(["Date", "1 INR in USD"])
+                        answer_keys = list(answer[0].keys())
+                        answer_values = list(answer[0].values())
+                        for x in range(0, len(answer_keys), 1):
+                            timeseries_table.add_row([answer_keys[x]['USD'], answer_values[x]['USD']])
+                        print ("Timeseries is as tabulated below: ")
+                        print (timeseries_table)
                     else:
                         print ("Please enter a valid choice")
                 pass
