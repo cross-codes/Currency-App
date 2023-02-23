@@ -196,10 +196,24 @@ if __name__ == "__main__":
                         timeseries_table = PrettyTable(["Date", "1 INR in USD"])
                         answer_keys = list(answer[0].keys())
                         answer_values = list(answer[0].values())
+                        print (type(answer_values[1]))
                         for x in range(0, len(answer_keys), 1):
-                            timeseries_table.add_row([answer_keys[x], answer_values[x]])
+                            timeseries_table.add_row([answer_keys[x], list(answer_values[x].values())[0]])
                         print ("Timeseries is as tabulated below: ")
                         print (timeseries_table)
+                        while checker4:
+                            choice2 = str(input("Go again? (Y/N)?: "))
+                            if choice2.lower() == "y":
+                                checker = True
+                                checker44 = False
+                                break
+                            elif choice2.lower() == "n":
+                                checker = False
+                                checker4 = False
+                                checker44 = False
+                                break
+                            else:
+                                print ("Please enter a valid answer!")
                     elif choice4 == 2:
                         delta = 30
                         end_date = cur_date - timedelta(days = delta)
@@ -207,13 +221,26 @@ if __name__ == "__main__":
                         timeseries_table = PrettyTable(["Date", "1 INR in USD"])
                         answer_keys = list(answer[0].keys())
                         answer_values = list(answer[0].values())
+                        print (type(answer_values[1]))
                         for x in range(0, len(answer_keys), 1):
-                            timeseries_table.add_row([answer_keys[x]['USD'], answer_values[x]['USD']])
+                            timeseries_table.add_row([answer_keys[x], list(answer_values[x].values())[0]])
                         print ("Timeseries is as tabulated below: ")
                         print (timeseries_table)
+                        while checker4:
+                            choice2 = str(input("Go again? (Y/N)?: "))
+                            if choice2.lower() == "y":
+                                checker = True
+                                checker44 = False
+                                break
+                            elif choice2.lower() == "n":
+                                checker = False
+                                checker4 = False
+                                checker44 = False
+                                break
+                            else:
+                                print ("Please enter a valid answer!")
                     else:
-                        print ("Please enter a valid choice")
-                pass
+                        print ("Invalid input, enter again")
 
             if choice == 5:
                 checker = False
