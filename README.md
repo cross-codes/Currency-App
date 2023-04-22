@@ -1,5 +1,5 @@
 <div align="center">
-<h1>💸 Currency-App</h1>
+<h1>💸 Currency-App v1.0</h1>
 
 A currency conversion app developed in Python
 
