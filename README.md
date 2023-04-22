@@ -1,7 +1,12 @@
-# Currency-App v1.0
+<div align="center">
+<h1>💸 Currency-App</h1>
+
 A currency conversion app developed in Python
 
-Current Version: 1.0
+Current version v1.0
+</div>
+
+---
 
 Project Started on: 05/11/2022
 
